@@ -34,5 +34,12 @@ last_five_operations_cart = utils.disguise_sender_account(last_five_operations_c
 # Маскеруем счет получателя
 last_five_operations_cart = utils.disguise_recipients_account(last_five_operations_cart)
 
-for data_operation in last_five_operations_cart:
-    print(data_operation)
+# Выводим 5 последних операци
+for operations in reversed(last_five_operations_cart):
+    print(operations['date'], end=' ')
+    print(operations["description"])
+    print(operations["from"], end='->')
+    print(operations["to"])
+    print(operations["operationAmount"]["amount"], end=' ')
+    print(operations["operationAmount"]["currency"]["name"])
+    print()
