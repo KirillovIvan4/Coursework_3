@@ -21,3 +21,11 @@ def formation_date(last_five_operations_cart):
         date_operations = date.fromisoformat(operations['date'])
         operations['date'] = date_operations.strftime("%d.%m.%Y")
     return last_five_operations_cart
+
+
+def add_from_in_operations(last_five_operations_cart):
+    """Функция проверян наличее срета отправителя и обавляет ключ from и значение 'Отсутствует' если такого ключа нет"""
+    for operations in last_five_operations_cart:
+        if len(operations) == 6:
+            operations["from"] = "Отсутствует"
+    return last_five_operations_cart
