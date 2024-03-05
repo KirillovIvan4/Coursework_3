@@ -23,3 +23,7 @@ def test_get_last_five_operations():
                                                   {'date': 5},
                                                   {'date': 6}
                                                   ]
+
+
+def test_formation_date():
+    assert utils.formation_date([{'date': "2019-02-14 03:09:23"}]) == [{'date': '14.02.2019'}]

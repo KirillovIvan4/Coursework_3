@@ -23,5 +23,10 @@ for data_operation in data_cart:
     # Оставляю только дату и время
     data_operation['date'] = data_operation['date'][:19]
 
-for data_operation in data_cart:
+# Получаем последние 5 операций
+last_five_operations_cart = utils.get_last_five_operations(data_cart)
+# форматирую дату
+last_five_operations_cart = utils.formation_date(last_five_operations_cart)
+
+for data_operation in last_five_operations_cart:
     print(data_operation)
