@@ -37,3 +37,10 @@ def disguise_sender_account(last_five_operations_cart):
         if operations["from"] != "Отсутствует":
             operations["from"] = operations["from"][:-10] + "*" * 6 + operations["from"][-4:]
     return last_five_operations_cart
+
+
+def disguise_recipients_account(last_five_operations_cart):
+    """Функция маскерует номер счета получателя отображая только последние 4 цифры"""
+    for operations in last_five_operations_cart:
+        operations["to"] = operations["to"][:5] + "**" + operations["to"][-4:]
+    return last_five_operations_cart

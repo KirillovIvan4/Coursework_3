@@ -42,3 +42,6 @@ def test_add_from_in_operations():
 def test_disguise_sender_account():
     assert utils.disguise_sender_account([{"from": 'Visa Gold 7756673469642839'}]) == [{"from": 'Visa Gold 775667******2839'}]
     assert utils.disguise_sender_account([{"from": 'Отсутствует'}]) == [{"from": 'Отсутствует'}]
+
+def test_disguise_recipients_account():
+    assert utils.disguise_recipients_account([{'to': 'Счет 61834060137088759145'}]) == [{'to': 'Счет **9145'}]
