@@ -37,3 +37,8 @@ def test_add_from_in_operations():
          ]) == [{'from': 7, 'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6},
                {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'from': 'Отсутствует'},
                {'from': 7, 'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6}]
+
+
+def test_disguise_sender_account():
+    assert utils.disguise_sender_account([{"from": 'Visa Gold 7756673469642839'}]) == [{"from": 'Visa Gold 775667******2839'}]
+    assert utils.disguise_sender_account([{"from": 'Отсутствует'}]) == [{"from": 'Отсутствует'}]

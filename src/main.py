@@ -29,6 +29,8 @@ last_five_operations_cart = utils.get_last_five_operations(data_cart)
 last_five_operations_cart = utils.formation_date(last_five_operations_cart)
 # Если from отсутствует то добаляем "Отсутствует"
 last_five_operations_cart = utils.add_from_in_operations(last_five_operations_cart)
+# Маскеруем счет отправителя
+last_five_operations_cart = utils.disguise_sender_account(last_five_operations_cart)
 
 for data_operation in last_five_operations_cart:
     print(data_operation)
