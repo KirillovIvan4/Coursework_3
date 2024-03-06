@@ -27,11 +27,15 @@ def get_last_five_operations(data_cart):
 
 def formation_date(last_five_operations_cart):
     """Функция форматирует дату под требования задния"""
+
     for operations in last_five_operations_cart:
-        operations["date"] = operations["date"][:10]
-        date_operations = date.fromisoformat(operations['date'])
-        operations['date'] = date_operations.strftime("%d.%m.%Y")
-    return last_five_operations_cart
+        if len(operations["date"]) >= 10:
+            operations["date"] = operations["date"][:10]
+            date_operations = date.fromisoformat(operations['date'])
+            operations['date'] = date_operations.strftime("%d.%m.%Y")
+            return last_five_operations_cart
+        else:
+            return f'Ошибка даты: слинком короткая строка'
 
 
 def add_from_in_operations(last_five_operations_cart):
@@ -53,5 +57,8 @@ def disguise_sender_account(last_five_operations_cart):
 def disguise_recipients_account(last_five_operations_cart):
     """Функция маскерует номер счета получателя отображая только последние 4 цифры"""
     for operations in last_five_operations_cart:
-        operations["to"] = operations["to"][:5] + "**" + operations["to"][-4:]
+        list_operations_to = operations["to"].split()
+        cart = " ".join(list_operations_to[:-1])
+        check = " ".join(list_operations_to[-1:])
+        operations["to"] = cart + " **" + check[-4:]
     return last_five_operations_cart
