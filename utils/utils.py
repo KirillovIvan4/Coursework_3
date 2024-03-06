@@ -3,15 +3,26 @@ from datetime import date
 
 def get_list():
     """Функция считывает json файл преобразует его список"""
-    with open('../operations.json', 'r', encoding='utf-8') as file:
-        data_card = json.load(file)
-        return data_card
+    with open('../operations.json', 'r', encoding='utf-8') as json_data_cart:
+        data_cart = json.load(json_data_cart)
+        return data_cart
+
 
 
 def get_last_five_operations(data_cart):
-    """Функция сортирует список операций по дате и возвращает 5 последних"""
-    data_cart.sort(key=lambda dictionary: dictionary['date'])
-    return data_cart[-5:]
+    """Функция проверяет есть date в операциях и сортирует список операций по дате и возвращает 5 последних"""
+    suitable_file = True
+    n = 0
+    for operations in data_cart:
+        if 'date' not in operations:
+            n += 1
+            suitable_file = False
+            break
+    if suitable_file == True:
+        data_cart.sort(key=lambda dictionary: dictionary['date'])
+        return data_cart[-5:]
+    else:
+        return f"Отсутствует дата в операции номер - {n}"
 
 
 def formation_date(last_five_operations_cart):

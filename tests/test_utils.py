@@ -1,4 +1,6 @@
 from utils import utils
+
+
 def test_get_last_five_operations():
     assert utils.get_last_five_operations([{'date': 2},
                                            {'date': 5},
@@ -25,6 +27,14 @@ def test_get_last_five_operations():
                                                   ]
 
 
+    assert utils.get_last_five_operations([{'date': 2},
+                                           {'dat': 5},
+                                           {'date': 4},
+                                           {'date': 6},
+                                           {'date': 1},
+                                           {'date': 3}
+                                           ]) == "Отсутствует дата в операции номер - 1"
+
 def test_formation_date():
     assert utils.formation_date([{'date': "2019-02-14 03:09:23"}]) == [{'date': '14.02.2019'}]
 
@@ -45,3 +55,4 @@ def test_disguise_sender_account():
 
 def test_disguise_recipients_account():
     assert utils.disguise_recipients_account([{'to': 'Счет 61834060137088759145'}]) == [{'to': 'Счет **9145'}]
+
